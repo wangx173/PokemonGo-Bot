@@ -27,6 +27,7 @@ Author: tjado <https://github.com/tejado>
 
 import os
 import re
+import time
 import json
 import argparse
 import time
@@ -214,6 +215,11 @@ def main():
         logger.log('[x] Exiting PokemonGo Bot', 'red')
         # TODO Add number of pokemon catched, pokestops visited, highest CP
         # pokemon catched, etc.
+
+    except:
+        print("[x] Unexpected error restart the bot")
+        time.sleep(150)
+        main()
 
 
 if __name__ == '__main__':
