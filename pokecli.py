@@ -28,6 +28,7 @@ Author: tjado <https://github.com/tejado>
 import os
 import re
 import time
+import random 
 import json
 import argparse
 import time
@@ -216,11 +217,20 @@ def main():
         # TODO Add number of pokemon catched, pokestops visited, highest CP
         # pokemon catched, etc.
 
-    except:
-        print("[x] Unexpected error restart the bot")
-        time.sleep(150)
-        main()
+    except RuntimeError as e:
+        # softban encountered
+        logger.log("[x] " + str(e), 'red')
+        # restart the program
+        sleep_time = random.randint(3600, 7200)
+        logger.log("[x] softban error, restart the bot in " + str(sleep_time) +" seconds", "yellow")
 
+    except Exception as e:
+        sleep_time = random.randint(85, 600)
+        logger.log("[x] " + str(e), 'red')
+        logger.log("[x] Unexpected error, restart the bot in " + str(sleep_time) +" seconds", "yellow")
+        time.sleep(sleep_time)
+        main()
+  
 
 if __name__ == '__main__':
     main()

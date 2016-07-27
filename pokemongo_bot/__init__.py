@@ -289,6 +289,8 @@ class PokemonGoBot(object):
             try:
                 location_str = str(self.config.location)
                 location = (self._get_pos_by_name(location_str.replace(" ", "")))
+                #randomize the location with a little ajust
+                location= (location[0] + random.random()*0.005, location[1] + random.random()*0.005, location[2])
                 self.position = location
                 self.api.set_position(*self.position)
                 logger.log('')
