@@ -6,7 +6,7 @@ if ps -ef | grep -v grep | grep  pokecli.py; then
         echo  "bot already running"
         exit 0
 else
-        python pokecli.py >> web/bot.log 2>&1 &
+        python pokecli.py > web/bot.log 2>&1 &
 
         echo $now " start..." >>  cron.log
         echo "bot starts"
